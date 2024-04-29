@@ -1,0 +1,44 @@
+### GET Bestellingen 1
+
+GET http://localhost:8080/bestellingen/1
+
+### GET Bestellingen 2
+
+GET http://localhost:8080/bestellingen/2
+
+### GET Product 1 (tafel)
+
+GET http://localhost:8080/producten/1
+
+### GET Product 2 (stoel)
+
+GET http://localhost:8080/producten/2
+
+### GET Product 3 (bank)
+
+GET http://localhost:8080/producten/3
+
+
+### Voeg 2 keer product 2 (stoel) toe aan bestelling 2
+
+POST http://localhost:8080/bestellingen/2/producten
+Content-Type: application/json
+
+{
+  "product_id": 2,
+  "aantal": 2
+}
+
+### Plaatst bestelling 1
+
+PATCH http://localhost:8080/bestellingen/1/plaats
+Content-Type: application/json
+
+### Update prijs van product 1 (tafel) naar 30000 centen
+
+PATCH http://localhost:8080/producten/1/prijs
+Content-Type: application/json
+
+{
+  "nieuwe_prijs": 30000
+}
