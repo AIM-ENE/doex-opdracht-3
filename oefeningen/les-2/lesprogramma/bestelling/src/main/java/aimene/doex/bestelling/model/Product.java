@@ -25,10 +25,6 @@ public class Product {
         this.prijs = prijs;
     }
 
-    public void veranderPrijs(Geld nieuwePrijs) {
-        prijs = nieuwePrijs;
-    }
-
     public Integer getId() {
         return id;
     }
