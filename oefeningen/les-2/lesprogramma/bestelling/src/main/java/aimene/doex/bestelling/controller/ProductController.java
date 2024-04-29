@@ -19,11 +19,9 @@ import java.util.stream.StreamSupport;
 public class ProductController {
 
     private final ProductRepository productRepository;
-    private final BestellingRepository bestellingRepository;
 
-    public ProductController(ProductRepository productRepository, BestellingRepository bestellingRepository) {
+    public ProductController(ProductRepository productRepository) {
         this.productRepository = productRepository;
-        this.bestellingRepository = bestellingRepository;
     }
 
     @GetMapping
@@ -36,30 +34,5 @@ public class ProductController {
         return product;
     }
 
-    @PatchMapping("{id}/prijs")
-    public void veranderPrijs(@PathVariable("id") Product product,
-                               @RequestBody Map<String, Object> requestBody) {
-
-        Geld nieuwePrijs = new Geld((int) requestBody.get("nieuwe_prijs"), Valuta.EUR);
-
-        product.veranderPrijs(nieuwePrijs);
-
-        productRepository.save(product);
-
-        AggregateReference<Product, Integer> productRef = AggregateReference.to(product.getId());
-
-        Iterable<Bestelling> bestellingen = bestellingRepository.findAll();
-
-        // Vind alle bestellingen die het product bevatten waarvan de prijs is veranderd
-        // Dit kan beter met een sql-query, maar dat doen we volgende week
-        List<Bestelling> bestellingenMetProduct = StreamSupport.stream(bestellingen.spliterator(), false)
-                .filter(bestelling -> bestelling.bevatBestellingProduct(productRef))
-                .collect(Collectors.toList());
-
-        // Verander de stukprijs van het product in de eerder gevonden bestellingen
-        bestellingenMetProduct.forEach(bestelling -> bestelling.veranderStukPrijs(productRef, nieuwePrijs));
-
-        bestellingRepository.saveAll(bestellingenMetProduct);
-    }
 }
 
