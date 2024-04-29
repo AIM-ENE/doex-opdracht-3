@@ -20,10 +20,9 @@ public class Bestelling {
 
     private Status status;
 
-    private Set<Bestelregel> bestelregels;
-    
-    @Embedded.Empty
-    private Geld totaalPrijs;
+    /* Bestelling -> Bestelregel */
+
+    /* Bestelling -> Geld */
 
     public Bestelling() {
         status = Status.CONCEPT;
@@ -48,11 +47,6 @@ public class Bestelling {
         if (!productToegevoegd) throw new IllegalArgumentException("Product bestaat al in deze bestelling");
 
         totaalPrijs = bepaalTotaalPrijs();
-    }
-
-    public boolean bevatBestellingProduct(AggregateReference<Product, Integer> product) {
-        return bestelregels.stream()
-                .anyMatch(bestelregel -> bestelregel.getProduct().equals(product));
     }
 
     public void veranderStukPrijs(AggregateReference<Product, Integer> product, Geld nieuwePrijs) {

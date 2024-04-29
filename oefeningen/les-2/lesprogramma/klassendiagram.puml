@@ -12,13 +12,15 @@ left to right direction
 rectangle "Bestelling Aggregate" {
 
     class Bestelling <<Aggregate Root>> {
-      id: Integer
-      voegProductToe(product, aantal, prijs)
+        id: Integer
+        plaatsBestelling()
+        voegProductToe(product, aantal, prijs)
+        veranderStukPrijs(product, nieuwePrijs)
     }
 
     class Bestelregel <<Entity>> {
-      aantal: int
-      getRegelPrijs(): Geld
+        aantal: int
+        getRegelPrijs(): Geld
     }
 
     class Status <<Value Object>> {
@@ -32,6 +34,8 @@ rectangle "Bestelling Aggregate" {
 
     class "Valuta" as v1 <<Value Object>>{
         EUR
+        USD
+        GBP
     }
 }
 

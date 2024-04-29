@@ -7,12 +7,12 @@ import java.util.Objects;
 
 public class Bestelregel {
 
-    private final AggregateReference<Product, Integer> product;
-
     private final int aantal;
 
-    @Embedded.Empty
-    private Geld stukPrijs;
+    /* Bestelregel -> Product */
+
+    /* Bestelregel -> Geld */
+
 
     public Bestelregel(AggregateReference<Product, Integer> product,
                        int aantal,
@@ -43,18 +43,18 @@ public class Bestelregel {
         return product;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Bestelregel that = (Bestelregel) o;
-//        return Objects.equals(product, that.product);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hashCode(product);
-//    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Bestelregel that = (Bestelregel) o;
+        return Objects.equals(product, that.product);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(product);
+    }
 
     @Override
     public String toString() {
