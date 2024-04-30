@@ -1,8 +1,6 @@
 @startuml
 !define han_red e50056
 
-
-
 hide circle
 
 left to right direction

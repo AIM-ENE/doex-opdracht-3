@@ -1,0 +1,26 @@
+@startuml
+
+hide circle
+
+
+rectangle "Post Aggregate" {
+
+    class Post <<Aggregate Root>> {
+        addComment(comment)
+        addComments(comments)
+    }
+
+    class Comment {
+    }
+}
+
+rectangle "Author Aggregate" {
+
+    class Author <<Aggregate Root>> {
+    }
+
+}
+Post "post \n 1" --- "comments \n *" Comment
+Post "*" -r-> "author \n 1" Author: \t\t
+
+@enduml
