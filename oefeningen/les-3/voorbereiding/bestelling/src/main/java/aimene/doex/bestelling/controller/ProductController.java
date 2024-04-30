@@ -40,24 +40,52 @@ public class ProductController {
     public void veranderPrijs(@PathVariable("id") Product product,
                                @RequestBody Map<String, Object> requestBody) {
 
-        Geld nieuwePrijs = new Geld((int) requestBody.get("nieuwe_prijs"), Valuta.EUR);
+        /* ******************************************************************** */
+        // Geef in het sequentiediagram wel expliciet aan dat je het product
+        // ophaalt uit de repository met een findById(productId)
+        // daarmee wordt het makkelijker te zien wanneer er een
+        // optimistic lock exception kan optreden
+        // (zie voorbeeld in het sequentiediagram)
+        /* ******************************************************************** */
 
+        /* ******************************************************************** */
+        // Deze regel hoef je niet op te nemen in het sequentiediagram
+        // Je kunt ervan uitgaan dat de nieuwePrijs wordt meegegeven door de
+        // actor bij aanroep van de methode veranderPrijs van deze controller
+        Geld nieuwePrijs = new Geld((int) requestBody.get("nieuwe_prijs"), Valuta.EUR);
+        /* ******************************************************************** */
+
+        /* ******************************************************************** */
+        // Geef deze regel in het sequentiediagram aan met een rnote
+        // (zie voorbeeld in het sequentiediagram)
         product.veranderPrijs(nieuwePrijs);
+        /* ******************************************************************** */
 
         productRepository.save(product);
 
-        AggregateReference<Product, Integer> productRef = AggregateReference.to(product.getId());
+        /* ******************************************************************** */
+        // Deze regel hoef je niet op te nemen in het sequentiediagram
+        AggregateReference<Product, Integer> productRef =
+                AggregateReference.to(product.getId());
+        /* ******************************************************************** */
 
-        Iterable<Bestelling> bestellingen = bestellingRepository.findAll();
-
+        /* ******************************************************************** */
         // Vind alle bestellingen die het product bevatten waarvan de prijs is veranderd
         // Dit kan beter met een sql-query, maar dat doen we volgende week
+        // In het Sequentiediagram kun je ervan uitgaan dat er een methode bestaat
+        // bestellingRepository.findAllMetProduct(productId) die dit voor je doet;
+        Iterable<Bestelling> bestellingen = bestellingRepository.findAll();
+
         List<Bestelling> bestellingenMetProduct = StreamSupport.stream(bestellingen.spliterator(), false)
                 .filter(bestelling -> bestelling.bevatBestellingProduct(productRef))
                 .collect(Collectors.toList());
+        /* ******************************************************************** */
 
+        /* ******************************************************************** */
+        // Geef dit in het sequentiediagram aan met een rnote
         // Verander de stukprijs van het product in de eerder gevonden bestellingen
         bestellingenMetProduct.forEach(bestelling -> bestelling.veranderStukPrijs(productRef, nieuwePrijs));
+        /* ******************************************************************** */
 
         bestellingRepository.saveAll(bestellingenMetProduct);
     }

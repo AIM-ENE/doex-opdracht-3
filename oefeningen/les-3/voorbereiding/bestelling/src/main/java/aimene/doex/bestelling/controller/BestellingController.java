@@ -33,7 +33,18 @@ public class BestellingController {
 
     @PatchMapping("{id}/plaats")
     public void plaatstBestelling(@PathVariable("id") Bestelling bestelling) {
+        /* ******************************************************************** */
+        // Geef in het sequentiediagram wel expliciet aan dat je het product
+        // ophaalt uit de repository met een findById(productId)
+        // daarmee wordt het makkelijker te zien wanneer er een
+        // optimistic lock exception kan optreden
+        /* ******************************************************************** */
+
+        /* ******************************************************************** */
+        // Geef deze regel in het sequentiediagram aan met een rnote
         bestelling.plaatsBestelling();
+        /* ******************************************************************** */
+
         bestellingRepository.save(bestelling);
     }
 
