@@ -1,0 +1,56 @@
+@startuml
+
+hide circle
+
+'left to right direction
+
+'skinparam linetype ortho
+'skinparam linetype polyline
+
+rectangle "FestivalBezoeker Aggregate" {
+    class FestivalBezoeker <<AR>> {
+        id: Integer
+        naam: String
+    }
+}
+
+rectangle "Favouriet Aggregate" {
+    class Favoriet <<AR>> {
+        id: Integer
+        isIngepland: bool
+        planIn(Film film)
+    }
+}
+
+rectangle "Film Aggregate" {
+    class Film <<AR>> {
+        id: Integer
+        naam: String
+    }
+}
+
+rectangle "Dagplanning Aggregate" {
+    class Dagplanning <<AR>> {
+        id: Integer
+        datum: LocalDate
+        voegToe(Vertoning vertoning)
+    }
+
+    class Vertoning <<Value Object>> {
+        startTijd: LocalTime
+        eindTijd: LocalTime
+        locatie: String
+    }
+}
+
+FestivalBezoeker "1" --- "dagplanningen *\n\n" Dagplanning
+
+FestivalBezoeker "1" --> "favorieten *\n\n" Favoriet
+
+Dagplanning "1" --> " vertoningen *" Vertoning
+
+Vertoning "1   " --> "film 1" Film
+
+Favoriet "1" --> "\tfilm 1" Film
+
+@enduml
