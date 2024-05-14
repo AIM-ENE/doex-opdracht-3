@@ -1,0 +1,49 @@
+@startuml
+
+autonumber
+
+actor Leverancier
+
+participant productController as "productController:\nbestellingController"
+participant product as "product:\nProduct"
+participant bestellingMetProduct as "bestellingMetProduct:\nBestelling"
+
+database productRepository as "productRepository:\nProductRepository"
+database bestellingRepository as "bestellingRepository:\nBestellingRepository"
+
+participant bestelling as "bestelling:\nBestelling"
+participant bestellingController as "bestellingController:\nbestellingController"
+
+
+actor Instellingsmedewerker as Instelling
+
+Leverancier --> productController: veranderPrijs\n\
+    (productId, nieuwePrijs)
+
+productController -> productRepository: product = find(productId)
+
+productController -> product: veranderPrijs(nieuwePrijs)
+
+
+
+productController -> productRepository: save(product)
+
+Instelling --> bestellingController: plaatsBestelling\n\
+    (bestellingId)
+
+bestellingController -> bestellingRepository: bestelling = findById(bestellingId)
+
+bestellingController -> bestelling: plaatsBestelling()
+
+
+bestellingController -> bestellingRepository: save(bestelling)
+
+productController -> bestellingRepository: bestellingenMetProduct =\n\
+    findBestellingMetProduct(product)
+
+productController -> bestellingMetProduct: veranderStukPrijs(nieuwePrijs)
+
+
+productController -> bestellingRepository: save(bestellingenMetProduct)
+
+@enduml
