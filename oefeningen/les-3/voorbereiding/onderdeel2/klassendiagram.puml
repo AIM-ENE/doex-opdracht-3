@@ -1,0 +1,70 @@
+@startuml
+!define han_red e50056
+
+hide circle
+
+left to right direction
+'skinparam linetype ortho
+'skinparam linetype polyline
+
+rectangle "Bestelling Aggregate" {
+
+    class Bestelling <<Aggregate Root>> {
+        id: Integer
+        plaatsBestelling()
+        voegProductToe(product, aantal, prijs)
+        veranderStukPrijs(product, nieuwePrijs)
+    }
+
+    class Bestelregel <<Entity>> {
+        aantal: int
+        getRegelPrijs(): Geld
+    }
+
+    class Status <<Value Object>> {
+        CONCEPT
+        BESTELD
+    }
+
+    class "Geld" as g1 <<Value Object>>{
+        aantalCenten: int
+    }
+
+    class "Valuta" as v1 <<Value Object>>{
+        EUR
+        USD
+        GBP
+    }
+}
+
+rectangle "Product Aggregate" {
+    class Product <<Aggregate Root>> {
+      id: Integer
+      naam: String
+    }
+
+    class "Geld" as g2 <<Value Object>>{
+        aantalCenten: int
+    }
+
+    class "Valuta" as v2 <<Value Object>>{
+        EUR
+    }
+}
+
+
+Bestelling "1" -r-> "bestelregels *" Bestelregel : "\n\n"
+Bestelling "1" --> "status 1 "Status: "\t"
+Bestelling "1" --> "totaalPrijs 1" g1
+g1 "1" --> "\n valuta 1" v1
+
+Bestelregel "1" -l-> "\nproduct 1" Product : "\n\n\n"
+Bestelregel "1" --> "stukPrijs 1" g1
+
+
+Product "1" --> "prijs 1" g2
+g2 "1" --> "\n valuta 1" v2
+
+
+
+@enduml
