@@ -1,0 +1,23 @@
+@startuml
+
+hide circle
+
+left to right direction
+
+rectangle "Aggregate Zitplaats" {
+    class Vertoning <<Value Object>> {
+        datum
+        tijd
+        film
+        zaal
+    }
+
+    class Zitplaats <<AR>> {
+        Id
+        isBeschikbaar
+        reserveer()
+    }
+}
+
+Vertoning "vertoning 1" <--- "*" Zitplaats
+@enduml

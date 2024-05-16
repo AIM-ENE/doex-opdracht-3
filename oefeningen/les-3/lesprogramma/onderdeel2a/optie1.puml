@@ -1,0 +1,25 @@
+@startuml
+
+hide circle
+
+left to right direction
+
+rectangle "Aggregate Vertoning" {
+    class Vertoning <<AR>> {
+        Id
+        datum
+        tijd
+        film
+        zaal
+        reserveerStoel(stoelId)
+    }
+
+    class Zitplaats <<Entity>> {
+        Id
+        isBeschikbaar
+        reserveer()
+    }
+}
+
+Vertoning "1" ---> "zitplaatsen *" Zitplaats
+@enduml
