@@ -7,18 +7,10 @@ hide circle
 'skinparam linetype ortho
 'skinparam linetype polyline
 
-rectangle "FestivalBezoeker Aggregate" {
-    class FestivalBezoeker <<AR>> {
+rectangle "Bezoeker Aggregate" {
+    class Bezoeker <<AR>> {
         id: Integer
         naam: String
-    }
-}
-
-rectangle "Favouriet Aggregate" {
-    class Favoriet <<AR>> {
-        id: Integer
-        isIngepland: bool
-        planIn(Film film)
     }
 }
 
@@ -43,14 +35,10 @@ rectangle "Dagplanning Aggregate" {
     }
 }
 
-FestivalBezoeker "1" --- "dagplanningen *\n\n" Dagplanning
-
-FestivalBezoeker "1" --> "favorieten *\n\n" Favoriet
+Bezoeker "*" --- "dagplanningen *\n\n" Dagplanning
 
 Dagplanning "1" --> " vertoningen *" Vertoning
 
 Vertoning "1   " --> "film 1" Film
-
-Favoriet "1" --> "\tfilm 1" Film
 
 @enduml
