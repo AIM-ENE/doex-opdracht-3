@@ -4,20 +4,22 @@ hide circle
 
 left to right direction
 
-rectangle "Aggregate Zitplaats" {
-    class Vertoning <<Value Object>> {
+rectangle "Aggregate Vertoning" {
+    class Vertoning <<AR>> {
+        id
         datum
         tijd
         film
         zaal
     }
-
+}
+rectangle "Aggregate Zitplaats" {
     class Zitplaats <<AR>> {
-        Id
+        id
         isBeschikbaar
         reserveer()
     }
 }
 
-Vertoning "vertoning 1" <--- "*" Zitplaats
+Vertoning "vertoning 1" --- "*" Zitplaats
 @enduml

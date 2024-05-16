@@ -1,0 +1,37 @@
+@startuml
+hide circle
+
+skinparam linetype ortho
+
+rectangle "Aggregate" {
+
+    class Bibliotheek <<AR>> {
+        naam
+    }
+
+    class Uitlening <<value object>> {
+        startdatum
+        einddatum
+    }
+}
+
+class Lid <<Entity>> {
+    naam
+}
+
+class Boek <<Entity>> {
+        titel
+}
+Bibliotheek "1" -- "uitleningen *" Uitlening
+Uitlening "1" -l-> "boek 1" Boek
+Uitlening "1" -r-> "lid 1" Lid
+
+note as N
+
+Moet je dit willen?
+Hoe groot wordt de collectie
+die Bibliotheek beheert?
+
+end note
+
+@enduml

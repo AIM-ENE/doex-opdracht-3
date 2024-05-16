@@ -6,7 +6,7 @@ left to right direction
 
 rectangle "Aggregate Vertoning" {
     class Vertoning <<AR>> {
-        Id
+        id
         datum
         tijd
         film
@@ -15,7 +15,7 @@ rectangle "Aggregate Vertoning" {
     }
 
     class Zitplaats <<Entity>> {
-        Id
+        id
         isBeschikbaar
         reserveer()
     }

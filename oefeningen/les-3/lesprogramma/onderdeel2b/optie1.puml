@@ -1,0 +1,44 @@
+@startuml
+
+hide circle
+
+class Client <<Entity>>
+
+class Werkweek <<Entity>>
+
+class Jaar <<Entity>>
+
+rectangle "Aggregate" {
+    class Dag <<AR>> {
+        maakAfspraak()
+    }
+
+    class Slot <<Value Object>> {
+        slotnummer
+    }
+
+    class Afspraak <<Value Object>>
+}
+
+Afspraak "1" -r-> "  1..2" Slot
+Dag "1" --> "\t\t40" Slot
+Dag "\t\t\t1" --> "0..40" Afspraak
+
+Werkweek "1" -l- "5" Dag
+Afspraak "1" --> "1" Client
+
+Jaar "1" -u- "48" Werkweek
+
+note left of Dag
+    Dag als Aggregate Root
+    lijkt een mooie
+    middenweg tussen een grote aggregate
+    en het afdekken van invarianten
+    In dat geval is 1 afspraak per dag
+    een invariant en 20 afspraken per
+    jaar een regel die we niet als
+    invariant behandelen.
+
+end note
+
+@enduml
