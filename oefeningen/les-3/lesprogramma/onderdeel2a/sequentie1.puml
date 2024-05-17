@@ -1,0 +1,37 @@
+@startuml
+
+actor bezoeker1
+
+participant "vertoningController\n:VertoningController" as vc1
+participant "vertoning@1\n:Vertoning" as v1
+database VertoningRepository
+participant "vertoning@2\n:Vertoning" as v2
+participant "vertoningController\n:VertoningController" as vc2
+
+actor bezoeker2
+
+bezoeker1 -> vc1: PATCH /vertoning/1/reserveren \n\
+        { \n\
+            "stoelId": 1 \n\
+        }
+
+vc1 -> VertoningRepository: vertoning@1 = getVertoningById(1)
+vc1 -> v1: vertoning@1.reserveerStoel(1)
+
+bezoeker2 -> vc2: PATCH /vertoning/1/reserveren \n\
+        { \n\
+            "stoelId": 2 \n\
+        }
+
+vc2 -> VertoningRepository: vertoning@2= getVertoningById(1)
+vc2 -> v2: vertoning.reserveerStoel(2)
+
+vc1 -> VertoningRepository: save(vertoning@1)
+
+vc2 -> VertoningRepository: save(vertoning@2)
+
+'note over VertoningRepository, vc2
+
+VertoningRepository --> vc2: throw new OptimisticLockingFailureException()
+
+@enduml
