@@ -4,13 +4,14 @@ hide circle
 
 class Client <<Entity>>
 
-class Jaar <<Entity>>
-
 rectangle "Aggregate" {
-    class Werkweek <<AR>>
+
+    class Jaar <<AR>> {
+        maakAfspraak(dag, tijdslot, client)
+    }
 
     class Dag <<Entity>> {
-        maakAfspraak()
+
     }
 
     class Slot <<Value Object>> {
@@ -21,14 +22,11 @@ rectangle "Aggregate" {
 }
 
 Afspraak "1" -r-> "  1..2" Slot
-Dag "1" --> "\t\t40" Slot
+Dag "1" --> "40" Slot
 Dag "\t\t\t1" --> "0..40" Afspraak
 
-Werkweek "1" -l- "5" Dag
+Jaar "1" --> "240" Dag
 Afspraak "1" --> "1" Client
-
-Jaar "1" -u- "48" Werkweek
-
 
 
 @enduml

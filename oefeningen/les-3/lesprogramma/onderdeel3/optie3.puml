@@ -1,0 +1,32 @@
+@startuml
+
+hide circle
+
+class Client <<Entity>>
+
+class Jaar <<Entity>>
+
+class Dag <<Entity>> {
+    maakAfspraak(client, slots)
+}
+
+rectangle "Aggregate\n" {
+
+
+    class Slot <<AR>> {
+        id
+        maakAfspraak(client)
+    }
+
+    class Afspraak <<Value Object>>
+}
+
+Slot "1" --> "  0..1" Afspraak
+Dag "1" --> "40" Slot
+
+
+Jaar "1" --> "240" Dag
+Afspraak "1" --> "1" Client
+
+
+@enduml
