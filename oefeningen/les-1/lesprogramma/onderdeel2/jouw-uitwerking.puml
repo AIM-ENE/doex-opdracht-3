@@ -4,11 +4,11 @@ autonumber
 
 actor "Bezoeker1" as bezoeker1
 participant "dagplanningController:\nDagplanningController" as controller1
-participant "dagplanning@1:\nDagplanning" as dagplanning1
-participant "vertoning@1\nVertoning" as vertoning1
+participant "dagplanning:\nDagplanning" as dagplanning1
+participant "vertoning\nVertoning" as vertoning1
 database "dagplanning\nRepository" as dagplanningRepo
-participant "vertoning@2\nVertoning" as vertoning2
-participant "dagplanning@2:\nDagplanning" as dagplanning2
+participant "vertoning\nVertoning" as vertoning2
+participant "dagplanning:\nDagplanning" as dagplanning2
 participant "dagplanningController:\nDagplanningController" as controller2
 actor "Bezoeker2" as bezoeker2
 
@@ -20,17 +20,17 @@ bezoeker1 -> controller1 : PATCH dagplanning/5\n\
     filmId: 255\n\
 }
 
-controller1 -> dagplanningRepo: dagplanning@1 = findDagplanning(dagplanningId)
+controller1 -> dagplanningRepo: dagplanning = findDagplanning(dagplanningId)
 
-controller1 -> vertoning1 **: vertoning@1 = new Vertoning(datum, starttijd, eindtijd, filmId)
+controller1 -> vertoning1 **: vertoning = new Vertoning(datum, starttijd, eindtijd, filmId)
 
-controller1 -> dagplanning1: voegToe(vertoning@1)
+controller1 -> dagplanning1: voegToe(vertoning)
 
-dagplanning1 -> dagplanning1: geenConflict = veroorzaaktGeenConflict(vertoning@1)
+dagplanning1 -> dagplanning1: geenConflict = veroorzaaktGeenConflict(vertoning)
 
 alt geenConflict
-    dagplanning1 -> dagplanning1: add(vertoning@1)
-    controller1 -> dagplanningRepo: save(dagplanning@1)
+    dagplanning1 -> dagplanning1: add(vertoning)
+    controller1 -> dagplanningRepo: save(dagplanning)
 end
 
 @enduml
