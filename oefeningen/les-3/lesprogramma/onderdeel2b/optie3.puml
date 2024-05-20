@@ -1,0 +1,37 @@
+@startuml
+
+hide circle
+
+class Client <<Entity>>
+
+class Werkweek <<Entity>>
+
+class Jaar <<Entity>>
+
+class Dag <<Entity>>
+
+rectangle "Aggregate" {
+
+    class Dagdeel <<AR>> {
+        maakAfspraak()
+    }
+
+    class Slot <<Value Object>> {
+        slotnummer
+    }
+
+    class Afspraak <<Value Object>>
+}
+
+Dag "1" --- "2" Dagdeel
+Afspraak "1" -r-> "  1..2" Slot
+Dagdeel "1" --> "\t\t40" Slot
+Dagdeel "\t\t\t1" --> "0..40" Afspraak
+
+Werkweek "1" -l- "5" Dag
+Afspraak "1" --> "1" Client
+
+Jaar "1" -u- "48" Werkweek
+
+
+@enduml
