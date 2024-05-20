@@ -36,3 +36,10 @@
 ### Voorbeeld van een onnodige Optimistic Locking Exception
 
 >
+
+
+## Conclusie
+
+### Voor welke optie zou je kiezen en waarom?
+
+> 
