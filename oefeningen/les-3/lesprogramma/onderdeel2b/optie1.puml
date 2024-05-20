@@ -29,16 +29,4 @@ Afspraak "1" --> "1" Client
 
 Jaar "1" -u- "48" Werkweek
 
-note left of Dag
-    Dag als Aggregate Root
-    lijkt een mooie
-    middenweg tussen een grote aggregate
-    en het afdekken van invarianten
-    In dat geval is 1 afspraak per dag
-    een invariant en 20 afspraken per
-    jaar een regel die we niet als
-    invariant behandelen.
-
-end note
-
 @enduml
