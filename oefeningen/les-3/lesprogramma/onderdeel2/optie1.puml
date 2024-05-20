@@ -11,7 +11,7 @@ rectangle "Aggregate Vertoning" {
         tijd
         film
         zaal
-        reserveerStoel(stoelId)
+        reserveerZitplaats(zitplaatsId)
     }
 
     class Zitplaats <<Entity>> {

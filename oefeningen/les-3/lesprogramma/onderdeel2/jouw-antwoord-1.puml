@@ -12,25 +12,13 @@ actor bezoeker2
 
 bezoeker1 -> vc1: PATCH /vertoning/1/reserveer \n\
         { \n\
-            "stoelId": 1 \n\
+            "zitplaatsId": 1 \n\
         }
-
-vc1 -> VertoningRepository: vertoning = findById(1)
-vc1 -> v1: vertoning.reserveerStoel(1)
 
 bezoeker2 -> vc2: PATCH /vertoning/1/reserveer \n\
         { \n\
-            "stoelId": 2 \n\
+            "zitplaatsId": 2 \n\
         }
 
-vc2 -> VertoningRepository: vertoning = findById(1)
-vc2 -> v2: vertoning.reserveerStoel(2)
-
-vc1 -> VertoningRepository: save(vertoning)
-
-vc2 -> VertoningRepository: save(vertoning)
-
-
-VertoningRepository --> vc2: throw new OptimisticLockingFailureException()
 
 @enduml
