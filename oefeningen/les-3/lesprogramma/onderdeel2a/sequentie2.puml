@@ -1,0 +1,30 @@
+@startuml
+
+actor bezoeker1
+
+participant "vertoningController\n:VertoningController" as vc1
+participant "zitplaats1\n:Zitplaats" as v1
+database ZitplaatsRepository
+participant "zitplaats2\n:Zitplaats" as v2
+participant "vertoningController\n:VertoningController" as vc2
+
+actor bezoeker2
+
+bezoeker1 -> vc1: PATCH /zitplaats/1/reserveer
+
+vc1 -> ZitplaatsRepository: zitplaats1 = findById(1)
+vc1 -> v1: zitplaats1.reserveer(1)
+
+bezoeker2 -> vc2: PATCH /zitplaats/2/reserveer
+
+vc2 -> ZitplaatsRepository: zitplaats2= findById(1)
+vc2 -> v2: zitplaats.reserveer(2)
+
+vc1 -> ZitplaatsRepository: save(zitplaats1)
+
+vc2 -> ZitplaatsRepository: save(zitplaats2)
+
+'note over ZitplaatsRepository, vc2
+
+
+@enduml
