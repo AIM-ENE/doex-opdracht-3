@@ -20,17 +20,18 @@ bezoeker1 -> controller1 : PATCH dagplanning/5\n\
     filmId: 255\n\
 }
 
-controller1 -> dagplanningRepo: dagplanning = findDagplanning(dagplanningId)
+controller1 -> dagplanningRepo: dagplanning = findById(dagplanningId)
 
-controller1 -> vertoning1 **: vertoning = new Vertoning(datum, starttijd, eindtijd, filmId)
+controller1 -> vertoning1 **: vertoning = \n new Vertoning(datum, starttijd, eindtijd, filmId)
 
 controller1 -> dagplanning1: voegToe(vertoning)
 
-dagplanning1 -> dagplanning1: geenConflict = veroorzaaktGeenConflict(vertoning)
+dagplanning1 -> dagplanning1: conflict = \n veroorzaaktConflict(vertoning)
 
-alt geenConflict
+alt !conflict
     dagplanning1 -> dagplanning1: add(vertoning)
     controller1 -> dagplanningRepo: save(dagplanning)
 end
+
 
 @enduml
