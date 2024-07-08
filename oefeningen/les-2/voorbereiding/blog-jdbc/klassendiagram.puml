@@ -10,7 +10,7 @@ rectangle "Post Aggregate" {
         addComments(comments)
     }
 
-    class Comment {
+    class Comment <<Value Object>> {
     }
 }
 
@@ -20,7 +20,7 @@ rectangle "Author Aggregate" {
     }
 
 }
-Post "post \n 1" --- "comments \n *" Comment
+Post "post 1" -- "comments *" Comment
 Post "*" -r-> "author \n 1" Author: \t\t
 
 @enduml
