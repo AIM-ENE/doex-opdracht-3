@@ -19,7 +19,7 @@ GET http://localhost:8080/producten/2
 GET http://localhost:8080/producten/3
 
 
-### Voeg 2 keer product 2 (stoel) toe aan bestelling 2
+### Voeg product 2 (stoel) toe aan bestelling 2
 
 POST http://localhost:8080/bestellingen/2/producten
 Content-Type: application/json
@@ -29,16 +29,17 @@ Content-Type: application/json
   "aantal": 2
 }
 
+### Voeg product 2 (stoel) voor de tweede keer toe aan bestelling 1 (verwacht internal server error)
+
+POST http://localhost:8080/bestellingen/1/producten
+Content-Type: application/json
+
+{
+  "product_id": 2,
+  "aantal": 1
+}
+
 ### Plaatst bestelling 1
 
 PATCH http://localhost:8080/bestellingen/1/plaats
 Content-Type: application/json
-
-### Update prijs van product 1 (tafel) naar 30000 centen
-
-PATCH http://localhost:8080/producten/1/prijs
-Content-Type: application/json
-
-{
-  "nieuwe_prijs": 30000
-}
