@@ -12,8 +12,8 @@ rectangle "Bestelling Aggregate" {
     class Bestelling <<Aggregate Root>> {
         id: Integer
         plaatsBestelling()
-        voegProductToe(product, aantal, prijs)
-        veranderStukPrijs(product, nieuwePrijs)
+        voegProductToe(product: Product, aantal: int, prijs: Geld)
+        veranderStukPrijs(product: Product, nieuwePrijs: Geld)
     }
 
     class Bestelregel <<Entity>> {
@@ -41,6 +41,7 @@ rectangle "Product Aggregate" {
     class Product <<Aggregate Root>> {
       id: Integer
       naam: String
+      veranderPrijs(nieuwePrijs: Geld)
     }
 
     class "Geld" as g2 <<Value Object>>{

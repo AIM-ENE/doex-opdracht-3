@@ -8,4 +8,6 @@ Laat in het diagram zien dat het mogelijk is dat de prijsverandering niet in dez
 
 > In de map `bestelling` vind je een werkende Spring Boot Applicatie die deze functionaliteit bevat. Je kunt de code hiervan gebruiken om het sequentiediagram te maken. 
 
+> Gebruik in het sequentiediagram de methoden uit het `klassendiagram.puml` 
+
 > Werk het sequentiediagram uit in `jouw-uitwerking.puml`. 
