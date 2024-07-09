@@ -14,13 +14,6 @@ rectangle "Bezoeker Aggregate" {
     }
 }
 
-rectangle "Film Aggregate" {
-    class Film <<AR>> {
-        id: Integer
-        naam: String
-    }
-}
-
 rectangle "Dagplanning Aggregate" {
     class Dagplanning <<AR>> {
         id: Integer
@@ -31,14 +24,14 @@ rectangle "Dagplanning Aggregate" {
     class Vertoning <<Value Object>> {
         startTijd: LocalTime
         eindTijd: LocalTime
+        film: String
         locatie: String
     }
 }
 
-Bezoeker "*" --- "dagplanningen *\n\n" Dagplanning
+Bezoeker " eigenaar *" --- "dagplanningen *\n\n" Dagplanning
 
 Dagplanning "1" --> " vertoningen *" Vertoning
 
-Vertoning "1   " --> "film 1" Film
 
 @enduml
