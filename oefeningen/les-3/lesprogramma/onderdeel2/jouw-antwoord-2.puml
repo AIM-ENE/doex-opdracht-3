@@ -1,11 +1,13 @@
 @startuml
 
+autonumber
+
 actor bezoeker1
 
 participant "vertoningController\n:VertoningController" as vc1
-participant "zitplaats1\n:Zitplaats" as v1
+participant "zitplaats1\n:Zitplaats" as z1
 database ZitplaatsRepository
-participant "zitplaats2\n:Zitplaats" as v2
+participant "zitplaats2\n:Zitplaats" as z2
 participant "vertoningController\n:VertoningController" as vc2
 
 actor bezoeker2

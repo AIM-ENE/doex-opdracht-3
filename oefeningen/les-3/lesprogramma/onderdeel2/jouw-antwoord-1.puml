@@ -1,5 +1,7 @@
 @startuml
 
+autonumber
+
 actor bezoeker1
 
 participant "vertoningController\n:VertoningController" as vc1
