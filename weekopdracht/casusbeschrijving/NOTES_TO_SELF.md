@@ -8,3 +8,4 @@ De relatie tussen Bezoeker en Dagplanning is een veel op veel relatie (want Dagp
 
 Het identificeren van de juiste dagplanning is best ingewikkeld. Je hebt de datum nodig en het id van de bezoeker. 
 
+Sequentiediagrammen gaan we juist in de les doen, dus geen onderdeel van huiswerk.
