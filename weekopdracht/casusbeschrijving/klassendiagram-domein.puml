@@ -29,9 +29,17 @@ rectangle "Dagplanning Aggregate" {
     }
 }
 
+rectangle "Aggregate Film\n" {
+    class Film <<AR>> {
+        id: String,
+        duur: Integer
+
+}
+
 Bezoeker " eigenaar *" --- "dagplanningen *\n\n" Dagplanning
 
 Dagplanning "1" --> " vertoningen *" Vertoning
 
+Vertoning "1" --> "film 1" Film
 
 @enduml
