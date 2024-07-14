@@ -2,8 +2,8 @@
 
 hide circle
 
-rectangle "Dagplanning Aggregate" {
-    class Dagplanning <<AR>> {
+rectangle "DagAgenda Aggregate" {
+    class DagAgenda <<AR>> {
         id: Integer
         datum: LocalDate
         voegToe(Vertoning vertoning)
@@ -22,11 +22,9 @@ rectangle "Aggregate Film\n" {
         id: Integer
         titel: String
         duur: Integer
-
 }
 
-
-Dagplanning "1" --> " vertoningen *" Vertoning
+DagAgenda "1" --> " vertoningen *" Vertoning
 
 Vertoning "1" --> "film 1" Film
 

@@ -1,5 +1,9 @@
 package aimene.doex.filmfestival;
 
+import aimene.doex.filmfestival.model.DagAgenda;
+import aimene.doex.filmfestival.model.Film;
+import aimene.doex.filmfestival.repository.DagAgendaRepository;
+import aimene.doex.filmfestival.repository.FilmRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,7 +21,7 @@ public class FilmfestivalApplication {
 
 	@Bean
 	CommandLineRunner run(FilmRepository filmRepository,
-						  DagplanningRepository dagplanningRepository) {
+						  DagAgendaRepository dagAgendaRepository) {
 		return args -> {
 
 			List<Film> films = List.of(
@@ -33,8 +37,8 @@ public class FilmfestivalApplication {
 
 			filmRepository.saveAll(films);
 
-			Dagplanning dagplanning = new Dagplanning(LocalDate.of(2024, 10, 10));
-			dagplanningRepository.save(dagplanning);
+			DagAgenda dagAgenda = new DagAgenda(LocalDate.of(2024, 10, 10));
+			dagAgendaRepository.save(dagAgenda);
 		};
 	}
 }

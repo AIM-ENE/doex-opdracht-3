@@ -1,10 +1,10 @@
 ### Laat Dagplanning 1 zien
 
-GET http://localhost:8080/dagplanningen/1
+GET http://localhost:8080/dagagendas/1
 
 ### Voeg eerste vertoning toe aan Dagplanning 1
 
-POST http://localhost:8080/dagplanningen/1/vertoningen
+POST http://localhost:8080/dagagendas/1/vertoningen
 Content-Type: application/json
 
 {
@@ -15,7 +15,7 @@ Content-Type: application/json
 
 ### Voeg vertoning toe aan Dagplanning 1 die niet overlapt
 
-POST http://localhost:8080/dagplanningen/1/vertoningen
+POST http://localhost:8080/dagagendas/1/vertoningen
 Content-Type: application/json
 
 {
@@ -26,7 +26,7 @@ Content-Type: application/json
 
 ### Voeg vertoning toe aan Dagplanning 1 die wel overlapt
 
-POST http://localhost:8080/dagplanningen/1/vertoningen
+POST http://localhost:8080/dagagendas/1/vertoningen
 Content-Type: application/json
 
 {
