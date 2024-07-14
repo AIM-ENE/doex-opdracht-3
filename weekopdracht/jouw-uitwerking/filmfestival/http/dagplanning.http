@@ -1,0 +1,36 @@
+### Laat Dagplanning 1 zien
+
+GET http://localhost:8080/dagplanningen/1
+
+### Voeg eerste vertoning toe aan Dagplanning 1
+
+POST http://localhost:8080/dagplanningen/1/vertoningen
+Content-Type: application/json
+
+{
+  "filmId": 1,
+  "locatie": "Zaal 1",
+  "starttijd": "09:00:00"
+}
+
+### Voeg vertoning toe aan Dagplanning 1 die niet overlapt
+
+POST http://localhost:8080/dagplanningen/1/vertoningen
+Content-Type: application/json
+
+{
+  "filmId": 2,
+  "locatie": "Zaal 1",
+  "starttijd": "13:15:00"
+}
+
+### Voeg vertoning toe aan Dagplanning 1 die wel overlapt
+
+POST http://localhost:8080/dagplanningen/1/vertoningen
+Content-Type: application/json
+
+{
+  "filmId": 6,
+  "locatie": "Zaal 2",
+  "starttijd": "10:00:00"
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "filmId": 6,
+    "locatie": "Zaal 2",
+    "starttijd": "10:00:00"
+  },
+  {
+    "filmId": 1,
+    "locatie": "Zaal 2",
+    "starttijd": "12:00:00"
+  },
+
+  {
+    "filmId": 7,
+    "locatie": "Zaal 2",
+    "starttijd": "16:15:00"
+  },
+  {
+    "filmId": 8,
+    "locatie": "Zaal 2",
+    "starttijd": "19:30:00"
+  }
+]
