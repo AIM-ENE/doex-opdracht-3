@@ -2,18 +2,6 @@
 
 hide circle
 
-'left to right direction
-
-'skinparam linetype ortho
-'skinparam linetype polyline
-
-rectangle "Bezoeker Aggregate" {
-    class Bezoeker <<AR>> {
-        id: Integer
-        naam: String
-    }
-}
-
 rectangle "Dagplanning Aggregate" {
     class Dagplanning <<AR>> {
         id: Integer
@@ -22,21 +10,21 @@ rectangle "Dagplanning Aggregate" {
     }
 
     class Vertoning <<Value Object>> {
-        startTijd: LocalTime
-        eindTijd: LocalTime
-        film: String
         locatie: String
+        starttijd: LocalTime
+        eindtijd: LocalTime
+        overlaptMet(Vertoning vertoning): boolean
     }
 }
 
 rectangle "Aggregate Film\n" {
     class Film <<AR>> {
-        id: String,
+        id: Integer
+        titel: String
         duur: Integer
 
 }
 
-Bezoeker " eigenaar *" --- "dagplanningen *\n\n" Dagplanning
 
 Dagplanning "1" --> " vertoningen *" Vertoning
 
