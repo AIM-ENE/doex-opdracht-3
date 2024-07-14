@@ -1,0 +1,28 @@
+@startuml
+
+autonumber
+
+title "Bezoeker 1 en 2 proberen beiden een vertoning toe te voegen aan dezelfde dagagenda"
+
+actor "Bezoeker1" as bezoeker1
+participant "dagAgendaController:\ndagAgendaController" as controller1
+
+participant "dagAgendaController:\ndagAgendaController" as controller2
+actor "Bezoeker2" as bezoeker2
+
+bezoeker1 -> controller1 : POST dagagendas/1/vertoningen\n\
+{\n\
+    "filmId": 1, \n\
+    "locatie": "Zaal 1", \n\
+    "starttijd": "09:00:00" \n\
+}
+
+bezoeker2 -> controller2 : POST dagagendas/1/vertoningen\n\
+{\n\
+    "filmId": 6, \n\
+    "locatie": "Zaal 2", \n\
+    "starttijd": "10:00:00" \n\
+}
+
+
+@enduml
