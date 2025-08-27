@@ -1,3 +1,4 @@
-Werk op basis van de code van de andere student een scenario's uit in het sequentiediagram waarin twee gebruikers tegelijkertijd een nieuwe vertoning proberen toe te voegen. 
+Vergelijk de implementaties met de sequentiediagrammen uit de eerste les. 
 
-Test vervolgens deze implementatie door break points op de juiste plek te zetten in de code van de ander.
+- In hoeverre komen code en diagram met elkaar overeen?
+- Zorgt de code er in alle gevallen voor dat de invariant bewaakt wordt?
