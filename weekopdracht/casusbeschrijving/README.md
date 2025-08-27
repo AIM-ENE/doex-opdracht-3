@@ -1,14 +1,21 @@
 # Festival Planner 
 
-De casus is hetzelfde als die van vorige week, maar nu kunnen meerdere gebruikers samen vertoningen aan een gedeelde dag agenda toevoegen.
+De casus is hetzelfde als die van vorige week, maar nu kunnen meerdere gebruikers samen vertoningen aan een gedeelde dagplanning toevoegen.
 
-Om de opdracht niet te groot te maken, gaat deze opdracht alleen over het toevoegen van vertoningen aan een DagAgenda van één dag.
+Om de opdracht niet te groot te maken, zijn er een aantal simplificaties gedaan: 
+
+- Het filmfestival vindt plaats op 1 dag en op 1 locatie (dus datum en locatie worden niet opgeslagen)
+- Er is geen aparte klasse voor 
+- Als er een overlap is tussen twee onderdelen wordt er direct een exception gegooid (en geen waarschuwingsobject).
+
+Zie het klassendiagram in ` ./casusbeschrijving/klassendiagram-domein`
+
 
 ## Opdracht
 
-Het filmfestival publiceert het programma per dag en per zaal in JSON-format. De opdracht is het maken van een applicatie die een Vertoning kan toevoegen op basis van een programma-item uit het programma en de films die in de database staan.
+Het filmfestival publiceert een lijst met Vertoningen die allemaal op dezelfde dag en op dezelfde plek plaatsvinden. Gebruikers kunnen aan hun een dagplanning onderdelen toevoegen op basis van vertoningen.
 
-Ook moeten twee gebruikers vertoningen aan dezelfde dagplanning kunnen toevoegen en moet er op het goede moment een OptimisticLockingException optreden.
+Ook moeten twee gebruikers onderdelen aan dezelfde dagplanning kunnen toevoegen en moet er op het goede moment een OptimisticLockingException optreden.
 
 In `./sequentiediagram` vind je een voorbeeld van een sequentiediagram voor het toevoegen van een vertoning. Hierin zie je ook het JSON-format dat gebruikt moet worden voor de input.
 

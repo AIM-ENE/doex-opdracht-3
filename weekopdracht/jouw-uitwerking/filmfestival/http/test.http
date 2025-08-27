@@ -1,0 +1,17 @@
+### Laat Dagplanning 1 zien
+
+GET http://localhost:8080/dagplanningen/1
+
+### Voeg eerste onderdeel toe aan Dagplanning 1
+
+POST http://localhost:8080/dagplanningen/1/vertoningen/1
+
+
+### Voeg onderdeel toe aan Dagplanning 1 die niet overlapt
+
+POST http://localhost:8080/dagplanningen/1/vertoningen/5
+
+### Voeg onderdeel toe aan Dagplanning 1 die wel overlapt
+
+POST http://localhost:8080/dagplanningen/1/vertoningen/2
+

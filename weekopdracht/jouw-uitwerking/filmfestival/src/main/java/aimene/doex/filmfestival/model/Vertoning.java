@@ -1,13 +1,12 @@
 package aimene.doex.filmfestival.model;
 
-import org.springframework.data.jdbc.core.mapping.AggregateReference;
+
+import org.springframework.data.annotation.Id;
 
 import java.time.LocalTime;
 
-public record Vertoning(AggregateReference<Film, Integer> film,
-                        String locatie,
+public record Vertoning(@Id Integer id,
+                        String film,
                         LocalTime starttijd,
                         LocalTime eindtijd) {
-
-
 }
