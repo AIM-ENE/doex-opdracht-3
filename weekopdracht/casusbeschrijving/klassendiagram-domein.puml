@@ -12,7 +12,7 @@ rectangle "Dagplanning Aggregate" {
     class Onderdeel <<Value Object>> {
         starttijd: LocalTime
         eindtijd: LocalTime
-        overlaptMet(Vertoning vertoning): boolean
+        overlaptMet(Onderdeel anderOnderdeel): boolean
     }
 }
 
