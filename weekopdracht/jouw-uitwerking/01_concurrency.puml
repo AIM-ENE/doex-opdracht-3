@@ -1,0 +1,46 @@
+@startuml
+
+autonumber
+
+title "Bezoeker 1 en 2 proberen beiden een vertoning toe te voegen aan dezelfde dagagenda"
+
+actor "Bezoeker1" as bezoeker1
+participant "dagplannerController:\nDagplannerController" as controller1
+participant "dagplanning:\nDagplanning" as dagplanning1
+participant "onderdeel:\nOnderdeel" as onderdeel1
+database "dagplannerRepository:\nDagplannerRepository" as dagplanningRepo
+database "vertoningRepository:\nVertoningRepository" as vertoningRepo
+participant "onderdeel:\nOnderdeel" as onderdeel2
+participant "dagplanning:\nDagplanning" as dagplanning2
+participant "dagplannerController:\nDagplannerController" as controller2
+actor "Bezoeker2" as bezoeker2
+
+bezoeker1 -> controller1 : POST dagplanningen/1/vertoningen/1
+note left
+Bezoeker1 probeert
+vertoning 1 toe te voegen
+aan dagplanning 1
+end note
+
+controller1 -> onderdeel1 ** : onderdeel = new Onderdeel(\n\
+        vertoning1.id, \n\
+        vertoning1.starttijd, \n\
+        vertoning1.eindtijd)
+
+
+
+bezoeker2 -> controller2 : POST dagplanningen/1/vertoningen/2
+note right
+Bezoeker2 probeert
+vertoning 2 toe te voegen
+aan dagplanning 1
+end note
+
+controller2 -> onderdeel2 ** : onderdeel = new Onderdeel(\n\
+        vertoning2.id, \n\
+        vertoning2.starttijd, \n\
+        vertoning2.eindtijd)
+
+
+
+@enduml
