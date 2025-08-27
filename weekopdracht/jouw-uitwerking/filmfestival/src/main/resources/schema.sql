@@ -17,6 +17,4 @@ create table onderdeel (
     starttijd time,
     eindtijd time,
 
-    foreign key (dagplanning) references dagplanning (id),
-    foreign key (vertoning) references vertoning(id)
 );

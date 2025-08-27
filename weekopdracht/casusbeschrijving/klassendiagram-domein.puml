@@ -2,15 +2,14 @@
 
 hide circle
 
-rectangle "DagAgenda Aggregate" {
-    class DagAgenda <<AR>> {
+rectangle "Dagplanning Aggregate" {
+    class Dagplanning <<AR>> {
         id: Integer
         datum: LocalDate
         voegToe(Vertoning vertoning)
     }
 
-    class Vertoning <<Value Object>> {
-        locatie: String
+    class Onderdeel <<Value Object>> {
         starttijd: LocalTime
         eindtijd: LocalTime
         overlaptMet(Vertoning vertoning): boolean
@@ -18,14 +17,15 @@ rectangle "DagAgenda Aggregate" {
 }
 
 rectangle "Aggregate Film\n" {
-    class Film <<AR>> {
+    class Vertoning <<AR>> {
         id: Integer
         titel: String
-        duur: Integer
+        starttijd: LocalTime
+        eindtijd: LocalTime
 }
 
-DagAgenda "1" --> " vertoningen *" Vertoning
+Dagplanning "1" --> " onderdelen *" Onderdeel
 
-Vertoning "1" --> "film 1" Film
+Onderdeel "1" --> "vertoning 1" Vertoning
 
 @enduml
