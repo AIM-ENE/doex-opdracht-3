@@ -7,8 +7,8 @@ In deze opdracht ge je een gedeelte van Spring code schrijven om deze functional
 Om de opdracht niet te groot te maken, zijn er een aantal simplificaties gedaan: 
 
 - Het filmfestival vindt plaats op 1 dag en op 1 locatie (dus datum en locatie worden niet opgeslagen)
-- Er is geen aparte klasse voor 
-- Als er een overlap is tussen twee onderdelen wordt er moet er een exception gegooid (en geen waarschuwingsobject zoals in week 2 ontworpen is).
+- Er is geen aparte klasse voor locatie, en film is simpelweg een string attribuut in de Vertoning klasse
+- Als er een overlap is tussen twee onderdelen moet er een (domein/runtime) exception gegooid worden (en geen planningsconflict aangemaakt worden zoals in week 2 ontworpen is).
 
 ## Klassendiagram
 
